@@ -29,19 +29,15 @@ public class User {
         this.dob = dob;
     }
 
-    public void displayInfo(){
-        System.out.println("Name: " + name);
-        System.out.println("Date of birth: "+dob);
-    }
-
     public boolean isBirthday() {
         LocalDate today = LocalDate.now();
-        return today.getDayOfMonth() == dob.getDayOfMonth() && today.getMonth() == dob.getMonth();
+        return today.getDayOfMonth() == dob.getDayOfMonth() && today.getMonthValue() == dob.getMonthValue();
     }
 
-    public void displayHappyBirthday() {
+    public String getBirthdayGreeting() {
         if (isBirthday()) {
-            System.out.println("Happy birthday " + this.name);
+            return "Happy birthday " + this.name + "!";
         }
+        return "It is not " + this.name + "'s birthday today.";
     }
 }
