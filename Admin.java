@@ -10,25 +10,15 @@ public class Admin extends User {
     }
 
     @Override
-    public void displayInfo(){
-        super.displayInfo();
-        System.out.println("User type: admin");
-    }
-
-    public void displayInfo(boolean full){
-        if(full){
-            this.displayInfo();
-            System.out.println("Today's date " + LocalDate.now());
-        }else {
-            System.out.println(this.getName());
-        }
-    }
-
-    @Override
-    public void displayHappyBirthday() {
+    public String getBirthdayGreeting() {
+        String greeting = super.getBirthdayGreeting();
         if (isBirthday()) {
-            int age = LocalDate.now().getYear() - dob.getYear();
-            System.out.println("Happy birthday to you!?!! " + this.name + " || Your age is : " + age + " Year");
+            return greeting + " You are " + getAge() + " years old!";
         }
+        return greeting;
+    }
+
+    public int getAge() {
+        return LocalDate.now().getYear() - dob.getYear();
     }
 }
